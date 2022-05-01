@@ -115,6 +115,3 @@ print(x_train_ngram.shape)
 
 input_size = x_train_ngram.shape[1]
 
-
-
-
