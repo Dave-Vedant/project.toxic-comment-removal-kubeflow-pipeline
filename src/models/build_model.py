@@ -61,7 +61,7 @@ def mlp_model(layers, units, dropout_rate, input_shape, num_classes):
     return model
 
 # 
-def universal_cnn_model(blocks, filters, kernel_size, embedding_dim, dropout_rate, pool_size, input_shape, num_classes,
+def seq2seq_cnn_model(blocks, filters, kernel_size, embedding_dim, dropout_rate, pool_size, input_shape, num_classes,
                 num_features, use_pretrained_embedding=False, is_embedding_trainable=False, embedding_matrix=None):
     """Creates an instance of the CNN model
 

@@ -4,8 +4,15 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.metrics import categorical_accuracy
 from tensorflow.python.keras.preprocessing import sequence
 from tensorflow.python.keras.preprocessing import text
+import tensorflow as tf
 
-from ..data.data_preparation import x_train, y_train, x_test, reddit_test_numpy, reddit_train_numpy
+import sys
+
+from data import data_preparation
+# relative import
+sys.path.append("./src/data")
+import data_preparation
+from data_preparation import x_train, y_train, x_test, reddit_test_numpy, reddit_train_numpy
 
 
 
@@ -37,7 +44,22 @@ for word, i in word_index.items():
     if embedding_vector is not None:
         embedding_matrix[i] = embedding_vector
 
+def create_rnn_gru():
+    input_layer = layers.Input((70,))
+    model = tf.keras.Sequential()
+    embedding_layer = model.add(layers.Embedding(len(word_index) +1, 300, weights=[embedding_matrix], trainable=False)(input_layer))
+    embedding_layer = model.add(layers.SpatialDropout1D(0.3)(embedding_layer))
+
+    gru_layer = model.add(layers.GRU(100)(embedding_layer))
+    output_layer1 = model.add(layers.Dense(50, activation='relu')(gru_layer))
+    output_layer1 = model.add(layers.Dropout(0.25)(output_layer1))
+    output_layer2 = model.add(layers.Dense(2, activation='softmax')(output_layer1))
     
+    model = model.add(models.Model(inputs= input_layer, outputs = output_layer2))
+    model = model.add(model.compile(optimizer=optimizers.Adam(), loss='binary_crossentropy'))
+    return model
+
+
 def create_rnn_gru():
     input_layer = layers.Input((70,))
 
