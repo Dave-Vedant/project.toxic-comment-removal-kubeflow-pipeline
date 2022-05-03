@@ -6,15 +6,10 @@ from tensorflow.python.keras.preprocessing import sequence
 from tensorflow.python.keras.preprocessing import text
 import tensorflow as tf
 
-import sys
-
-from data import data_preparation
 # relative import
-sys.path.append("./src/data")
-import data_preparation
-from data_preparation import x_train, y_train, x_test, reddit_test_numpy, reddit_train_numpy
-
-
+import sys
+sys.path.append("./src")
+import data
 
 import numpy as np
 from sklearn.metrics import accuracy_score

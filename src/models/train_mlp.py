@@ -5,15 +5,12 @@ from tensorflow.keras.layers import Dense
 from tensorflow.python.keras.layers import Dropout
 from tensorflow.keras.metrics import categorical_accuracy
 
-import sys
 # relative import
-sys.path.append("./src/data")
+import sys
+sys.path.append("./src")
+import data
 
-import data_preparation
-from data_preparation import x_train_ngram, x_test_ngram, x_train, y_train, y_test
-from data_preparation import input_size, num_classes
-
-from build_model import _get_last_layer_units_and_activation, mlp_model
+# from build_model import _get_last_layer_units_and_activation, mlp_model # ::: 
 
 
 
