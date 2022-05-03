@@ -5,13 +5,10 @@ from tensorflow.keras.metrics import categorical_accuracy
 from tensorflow.python.keras.preprocessing import sequence
 from tensorflow.python.keras.preprocessing import text
 
-import sys
 # relative import
-sys.path.append("./src/data")
-
-import data_preparation
-from data_preparation import x_train, y_train, reddit_test_numpy, reddit_train_numpy, x_test
-from build_model import universal_cnn_model
+import sys
+sys.path.append("./src")
+import data
 
 # load the pre-trained word-embedding vectors
 embedding_index ={}

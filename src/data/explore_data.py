@@ -88,12 +88,14 @@ def plot_frequency_distribution_of_ngrams(sample_texts,
     counts = list(all_counts)[:num_ngrams]
 
     idx = np.arange(num_ngrams)
+    fig = plt.figure()
     plt.bar(idx, counts, width=0.8, color='b')
     plt.xlabel('N-grams')
     plt.ylabel('Frequencies')
     plt.title('Frequency distribution of n-grams')
     plt.xticks(idx, ngrams, rotation=45)
-    plt.show()
+    fig.savefig('output/freq_dist_n_grams.png')
+
 
 
 def plot_sample_length_distribution(sample_texts):
@@ -106,15 +108,18 @@ def plot_sample_length_distribution(sample_texts):
     # return
     plot the sample distribution
     """
+    fig = plt.figure()
     plt.hist([len(s) for s in sample_texts], 50)
     plt.xlabel("Length of a sample")
     plt.ylabel("Number of sample")
     plt.title("Sample length distribution")
-    plt.show()
+    fig.savefig('output/sample_length_distribution.png')
 
 
-plot_frequency_distribution_of_ngrams(sample_texts, ngram_range=(1,2), num_ngrams=50)
-plot_sample_length_distribution(sample_texts)
+
+frequency_distribution = plot_frequency_distribution_of_ngrams(sample_texts, ngram_range=(1,2), num_ngrams=50)
+
+sample_length_distribution = plot_sample_length_distribution(sample_texts)
 
 
 # calculate ratio for the model selection
