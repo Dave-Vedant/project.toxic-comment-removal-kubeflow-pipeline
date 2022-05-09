@@ -5,7 +5,7 @@ import pandas as pd
 import os 
 import json
 
-secret_path = '.secret/kaggle.json'
+secret_path = '.secret/kaggle.json' # its 'secret' folder you need to create in your local machine, do not expose to world!
 
 def get_keys(path):
     with open(path) as f:
@@ -31,6 +31,9 @@ else:
     os.system("unzip Data/reddit.zip -d Data")
 
 print('unzip completed')
+
+
+
 
 for dir, _, filenames in os.walk('Data'):
     for file in filenames:
